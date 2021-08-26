@@ -19,9 +19,8 @@ import org.hibernate.envers.Audited;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 import lombok.ToString;
 
 
@@ -29,8 +28,7 @@ import lombok.ToString;
 @Table(name = "Cliente")
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
-@Setter
+@Data
 @ToString
 @Builder
 @Audited
@@ -53,6 +51,7 @@ public class Cliente implements Serializable{
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "FK_Domicilio")
+	@ToString.Exclude
 	private Domicilio domicilio;
 	
 	@OneToMany(mappedBy = "cliente")

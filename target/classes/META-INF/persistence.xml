@@ -11,6 +11,19 @@
       	<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
       	<property name="javax.persistence.jdbc.password" value=""/>
         <property name="javax.persistence.schema-generation.database.action" value="update"/>
+        
+        <!-- hibernate -->
+		<property name="hibernate.show_sql" value="true"/>
+		<property name="hibernate.format_sql" value="true"/>
+<!-- 	<property name="hibernate.use_sql_comments" value="true"/> -->
+
+		<!--     ENVERS -->
+<!-- 		<property name="org.hibernate.envers.audit_table_suffix" value="_AUDITORIA" /> -->
+		<property name="org.hibernate.envers.audit_table_prefix" value="aud_" />
+<!-- 		<property name="org.hibernate.envers.revision_field_name" value="REVISION_ID" /> -->
+		<!--   <property name="org.hibernate.envers.revision_type_field_name" value="REVISION_TYPE" /> -->
+	
+        
     </properties>
   </persistence-unit> 
 

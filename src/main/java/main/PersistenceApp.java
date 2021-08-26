@@ -35,6 +35,7 @@ public class PersistenceApp {
 			Categoria lacteos = Categoria.builder().denominacion("Lacteos").build();
 			Categoria limpieza = Categoria.builder().denominacion("Limpieza").build();
 			
+			
 			Articulo art1 = Articulo.builder().
 					cantidad(200).
 					denominacion("Yogurt Ser Sabor Frutilla").
@@ -90,4 +91,9 @@ public class PersistenceApp {
 		em.close();
 		emf.close();
 	} 
+	
+	public static void crearArticulo1(EntityManager em) {
+		
+		
+	}
 }
