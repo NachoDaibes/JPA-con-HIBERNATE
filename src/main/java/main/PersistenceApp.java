@@ -1,7 +1,6 @@
 package main;
 import java.util.List;
 
-//Este es el cambio
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -28,10 +27,11 @@ public class PersistenceApp {
 		
 		//createFactura1Completa(em);
 		
+		createClienteDomicilio(em);
+		//removerDomicilio(em);
+		//removerCliente1(em);
 		
-		//createClienteDomicilio(em);
-		
-		queryRevisionInfo(em, Cliente.class);
+		//queryRevisionInfo(em, Cliente.class);
 		em.getTransaction().commit();
 	}
 	
@@ -83,11 +83,11 @@ public class PersistenceApp {
 		
 		art1.getCategorias().add(perecederos);
 		art1.getCategorias().add(lacteos);
-		lacteos.getArticulos().add(art1);
-		perecederos.getArticulos().add(art1);
+//		lacteos.getArticulos().add(art1);
+//		perecederos.getArticulos().add(art1);
 		
 		art2.getCategorias().add(limpieza);
-		limpieza.getArticulos().add(art2);
+//		limpieza.getArticulos().add(art2);
 		
 		
 	}
@@ -105,7 +105,7 @@ public class PersistenceApp {
 		Domicilio dom = Domicilio.builder().nombreCalle("LosCuadros").numero(449).build();
 		Cliente cliente = Cliente.builder().nombre("Pablo").apellido("Muñoz").dni(155883883).build();
 		cliente.setDomicilio(dom);
-		dom.setCliente(cliente);
+//		dom.setCliente(cliente);
 		em.persist(cliente);
 	}
 	
@@ -113,7 +113,7 @@ public class PersistenceApp {
 		Domicilio dom = Domicilio.builder().nombreCalle("LosCuadros").numero(449).build();
 		Cliente cliente = Cliente.builder().nombre("Pablo").apellido("Muñoz").dni(155883883).build();
 		cliente.setDomicilio(dom);
-		dom.setCliente(cliente);
+//		dom.setCliente(cliente);
 		
 		Factura factura1 = new Factura();
 		factura1.setNumero(0);
@@ -124,6 +124,12 @@ public class PersistenceApp {
 				cantidad(200).
 				denominacion("Yogurt Ser Sabor Frutilla").
 				precio(20).
+				build();
+		
+		Articulo art2 = Articulo.builder().
+				cantidad(400).
+				denominacion("Schampoo elvive").
+				precio(40).
 				build();
 		
 		DetalleFactura detalle1 = DetalleFactura.builder()
@@ -139,9 +145,10 @@ public class PersistenceApp {
 				.build();
 		
 		art1.getDetalle().add(detalle1);
+		art2.getDetalle().add(detalle2);
 		factura1.getDetalles().add(detalle1);
 		factura1.getDetalles().add(detalle2);
-		detalle1.setFactura(factura1);
+//		detalle1.setFactura(factura1);
 		
 		em.persist(factura1);
 	}
@@ -150,5 +157,17 @@ public class PersistenceApp {
 		Factura factura1 = em.find(Factura.class, 1L);
 		
 		em.remove(factura1);
+	}
+	
+	public static void removerDomicilio(EntityManager em){
+		Domicilio dom = em.find(Domicilio.class, 1L);
+		
+		em.remove(dom);
+	}
+	
+	public static void removerCliente1(EntityManager em){
+		Cliente cliente1 = em.find(Cliente.class, 1L);
+		
+		em.remove(cliente1);
 	}
 }
